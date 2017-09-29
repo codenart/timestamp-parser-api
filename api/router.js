@@ -10,7 +10,12 @@ const router = express.Router();
 /**
  * Timestamp Parser
  */
-router.get('/api/timestamp\*', require(__dirname + '/timestamp/app'));
+router.get('/api/timestamp/\*', (request, response, next) => {
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
+router.get('/api/timestamp/\*', require(__dirname + '/timestamp/app'));
 
 /**
  * Invalid URL
